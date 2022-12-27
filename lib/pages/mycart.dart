@@ -41,6 +41,7 @@ class _MyCartState extends State<MyCart> {
           ),
           elevation: 0,
         ),
+
         body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: boughtitems.isNotEmpty
@@ -287,3 +288,4 @@ class _MyCartState extends State<MyCart> {
     );
   }
 }
+

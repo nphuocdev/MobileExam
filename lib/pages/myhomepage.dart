@@ -1,7 +1,7 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:badges/badges.dart';
-import 'package:flutter/material.dart';
 
+import 'package:animate_do/animate_do.dart';
+import 'package:flutter/material.dart';
+import 'package:badges/badges.dart';
 import 'package:tapmobile/consts.dart';
 import 'package:tapmobile/models/cart_model.dart';
 import 'package:tapmobile/pages/details_page.dart';
@@ -87,22 +87,22 @@ class _MyHomePageState extends State<MyHomePage>
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, right: 30),
                 child:
-                 favouriteitems.isNotEmpty
-                    ? Badge(
-                        badgeContent: Text(
-                          favouriteitems.length.toString(),
-                          style: style.copyWith(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w900,
-                              color: white),
-                        ),
-                        child: const Icon(
-                          Icons.favorite,
-                          color: Color.fromARGB(255, 226, 59, 59),
-                          size: 28,
-                        ),
-                      )
-                    : const
+                //  favouriteitems.isNotEmpty
+                //     ? Badge(
+                //         Badge: Text(
+                //           favouriteitems.length.toString(),
+                //           style: style.copyWith(
+                //               fontSize: 10,
+                //               fontWeight: FontWeight.w900,
+                //               color: white),
+                //         ),
+                //         child: const Icon(
+                //           Icons.favorite,
+                //           color: Color.fromARGB(255, 226, 59, 59),
+                //           size: 28,
+                //         ),
+                //       )
+                //     : const
                     Icon(
                         Icons.favorite,
                         color: Color.fromARGB(255, 226, 59, 59),
@@ -255,8 +255,33 @@ class _MyHomePageState extends State<MyHomePage>
                       style: style.copyWith(
                           fontSize: 22, fontWeight: FontWeight.bold),
                        ),
-                       
-                        
+                        const Spacer(),
+                         GestureDetector(
+                            onTap: () {
+                              boughtitems.add(
+                                CartModel(
+                                  name: myitems[index].name,
+                                  price: myitems[index].price,
+                                  img: myitems[index].img,
+                                  color: myitems[index].color,
+                                  items: 1,
+
+                                ),
+                              );
+                              total = total + myitems[index].price;
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const MyCart()));
+                            },
+                            child: Icon(
+                                    Icons.shopping_cart,
+                                    color: Colors.white ,
+                                    size: 28,
+                                  ),
+
+)
+
                             ],
                     ),
 
@@ -271,3 +296,4 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 }
+

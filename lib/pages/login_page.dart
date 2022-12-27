@@ -54,7 +54,7 @@ class _loginPageState extends State<loginPage> {
               key: formKey,
               child: Column(children: [
                 Image.asset(
-                  "assets/logo.jpg",
+                  "assets/mobileShop.jpg",
                   width:350,
                   height: 350,
                 ),

@@ -23,12 +23,56 @@ class _DetailsPageState extends State<DetailsPage> {
     var _screenheight = MediaQuery.of(context).size.height;
     var _screenwidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        leading: InkWell(
+          child:  GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.chevron_left,
+                    color: white,
+                    size: 40,
+                  ),
+                ),
+        ),
+        backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text(
+            'My Cart',
+            style: style.copyWith(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+          actions: [
+            GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.item.isselected = !widget.item.isselected;
+
+                      widget.item.isselected
+                          ? favouriteitems.add(widget.item)
+                          : favouriteitems.remove(widget.item);
+                    });
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only( right: 30),
+                    child: Icon(
+                      Icons.favorite_sharp,
+                      color: widget.item.isselected ? Colors.red : white,
+                      size: 30,
+                    ),
+                  ),
+                )
+          ],
+      ),
       body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.black.withOpacity(.0),
                 Colors.black.withOpacity(.5),
+                Colors.black.withOpacity(.0),
               ],
               begin: Alignment.bottomRight,
             ),
@@ -65,10 +109,10 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
+                  Row(
                     children: [
                         Text(
-                          'Title:',
+                          'Title: ',
                           style: style.copyWith(
                               fontWeight: FontWeight.w100,
                               fontSize: 20,
@@ -78,7 +122,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           widget.item.title,
                           style: style.copyWith(
                               fontWeight: FontWeight.w100,
-                              fontSize: 16,
+                              fontSize: 18,
                               color: Colors.black),
                         ),
                           ],
@@ -101,7 +145,7 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
 
             const SizedBox(
-              height: 20,
+              height: 10,
 
             ),
 
@@ -173,7 +217,7 @@ class _DetailsPageState extends State<DetailsPage> {
       {required var screenwidth, required var screenheight}) {
     return Container(
       width: screenwidth,
-      height: screenheight * .6,
+      height: screenheight * .5,
       decoration: BoxDecoration(
           color: widget.item.color,
           borderRadius: const BorderRadius.only(
@@ -181,44 +225,10 @@ class _DetailsPageState extends State<DetailsPage> {
             bottomRight: Radius.circular(30),
           )),
       child: Padding(
-        padding: const EdgeInsets.only(left:20.0,right: 20.0,top:0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.chevron_left,
-                    color: white,
-                    size: 40,
-                  ),
-                ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      widget.item.isselected = !widget.item.isselected;
-
-                      widget.item.isselected
-                          ? favouriteitems.add(widget.item)
-                          : favouriteitems.remove(widget.item);
-                    });
-                  },
-                  child: Icon(
-                    Icons.favorite_sharp,
-                    color: widget.item.isselected ? Colors.red : white,
-                    size: 30,
-                  ),
-                )
-              ],
-            ),
             Center(
                   child: Container(
                      width: 300,
@@ -239,3 +249,4 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
 }
+

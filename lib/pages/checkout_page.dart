@@ -62,7 +62,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.asset(
-                              "assets/logo.jpg",
+                              "assets/mobileShop.jpg",
                               width: 80,
                             ),
                             const SizedBox(
